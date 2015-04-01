@@ -1,12 +1,11 @@
 <?php namespace App;
 
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
+class User extends BaseModel implements AuthenticatableContract, CanResetPasswordContract {
 
 	use Authenticatable, CanResetPassword;
 
@@ -30,5 +29,32 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
+
+	/**
+	 * Register any other events for your application.
+	 *
+	 * @param  \Illuminate\Contracts\Events\Dispatcher  $events
+	 * @return void
+	 */
+	public function boot(DispatcherContract $events)
+	{
+		parent::boot($events);
+	}
+
+	// ------------------------ RELATIONSHIP ------------------------
+	function vehicles()
+	{
+		return $this->hasMany(__NAMESPACE__ . '\Vehicle');
+	}
+
+	function claims()
+	{
+		return $this->hasMany(__NAMESPACE__ . '\Claim');
+	}
+
+	function insurances()
+	{
+		return $this->hasMany(__NAMESPACE__ . '\Insurance');
+	}
 
 }

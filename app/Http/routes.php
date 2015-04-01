@@ -11,6 +11,8 @@
 |
 */
 
+include(__DIR__ . '/routes_api.php');
+
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
