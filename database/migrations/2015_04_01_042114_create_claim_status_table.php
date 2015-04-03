@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClaimStatusesTable extends Migration {
+class CreateClaimStatusTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -15,7 +15,7 @@ class CreateClaimStatusesTable extends Migration {
 		Schema::create('claim_status', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->name('status');
+			$table->string('name');
 			$table->integer('orders');
 			
 			$table->timestamps();

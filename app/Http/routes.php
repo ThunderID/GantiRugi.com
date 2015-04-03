@@ -11,7 +11,10 @@
 |
 */
 
-include(__DIR__ . '/routes_api.php');
+include(__DIR__ . '/Controllers/Admin/routes.php');
+include(__DIR__ . '/Controllers/API/routes.php');
+include(__DIR__ . '/Controllers/Users/routes.php');
+include(__DIR__ . '/Controllers/Portal/routes.php');
 
 Route::get('/', 'WelcomeController@index');
 

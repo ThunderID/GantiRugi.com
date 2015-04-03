@@ -12,7 +12,7 @@ class CreateUserVehicle extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('user_vehicle', function(Blueprint $table)
+		Schema::create('user_vehicle', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('vendor_id')->unsigned();

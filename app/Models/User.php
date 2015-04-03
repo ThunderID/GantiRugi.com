@@ -36,9 +36,11 @@ class User extends BaseModel implements AuthenticatableContract, CanResetPasswor
 	 * @param  \Illuminate\Contracts\Events\Dispatcher  $events
 	 * @return void
 	 */
-	public function boot(DispatcherContract $events)
+	static function boot()
 	{
-		parent::boot($events);
+		parent::boot();
+
+		Static::observe(new UserObserver);
 	}
 
 	// ------------------------ RELATIONSHIP ------------------------

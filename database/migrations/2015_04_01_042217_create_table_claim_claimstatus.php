@@ -12,7 +12,7 @@ class CreateTableClaimClaimstatus extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('claim_claimstatus', function(Blueprint $table)
+		Schema::create('claim_claimstatus', function(Blueprint $table)
 		{
 			//
 			$table->increments('id');
@@ -24,7 +24,7 @@ class CreateTableClaimClaimstatus extends Migration {
 			$table->softDeletes();
 
 			$table->index('claim_id');
-			$table->index('status_id');
+			$table->index('claim_status_id');
 		});
 	}
 

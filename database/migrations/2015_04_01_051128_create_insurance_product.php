@@ -12,7 +12,7 @@ class CreateInsuranceProduct extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('insurance_vehicle', function(Blueprint $table)
+		Schema::create('insurance_vehicle', function(Blueprint $table)
 		{
 			//
 			$table->increments('id');
