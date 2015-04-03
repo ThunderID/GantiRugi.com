@@ -146,6 +146,9 @@ return [
 		'App\Providers\RouteServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
+
+		// widgets
+		'App\Providers\WidgetProvider',
 	],
 
 	/*
