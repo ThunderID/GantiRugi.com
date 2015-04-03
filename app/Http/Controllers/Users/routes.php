@@ -3,5 +3,5 @@
 // ------------------------------------------------------------------------
 // ROUTES FOR USERS
 // ------------------------------------------------------------------------
-Route::group(['prefix' => 'api', 'namespace' => 'App\Http\Controllers\API'], function() {
+Route::group(['prefix' => 'users', 'before' => 'csrf'], function() {
 });
