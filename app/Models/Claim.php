@@ -15,9 +15,9 @@ class Claim extends BaseModel {
 	 * @param  \Illuminate\Contracts\Events\Dispatcher  $events
 	 * @return void
 	 */
-	public function boot(DispatcherContract $events)
+	static function boot()
 	{
-		parent::boot($events);
+		parent::boot();
 	}
 
 	// ------------------------ RELATIONSHIP ------------------------

@@ -3,7 +3,7 @@
 class Vendor extends BaseModel {
 
 	// Properties
-	protected 	$table 		= 'insurances';
+	protected 	$table 		= 'vendors';
 	protected 	$fillable	= [];
 	public 		$timestamps = true;
 	protected 	$dates 		= ['deleted_at'];
@@ -15,9 +15,9 @@ class Vendor extends BaseModel {
 	 * @param  \Illuminate\Contracts\Events\Dispatcher  $events
 	 * @return void
 	 */
-	public function boot(DispatcherContract $events)
+	static function boot()
 	{
-		parent::boot($events);
+		parent::boot();
 	}
 
 	// ------------------------ RELATIONSHIP ------------------------
@@ -27,6 +27,18 @@ class Vendor extends BaseModel {
 	}
 
 	// ------------------------ SCOPE ------------------------
+	function scopeName($q, $value = null)
+	{
+		if (!$value)
+		{
+			return $q;
+		}
+		else
+		{
+			$value = str_replace("*", '%', $value);
+			return $q->where('name', 'like', $value);
+		}
+	}
 
 	// ------------------------ MUTATOR ------------------------
 

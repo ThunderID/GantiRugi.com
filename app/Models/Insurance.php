@@ -15,9 +15,9 @@ class Insurance extends BaseModel {
 	 * @param  \Illuminate\Contracts\Events\Dispatcher  $events
 	 * @return void
 	 */
-	public function boot(DispatcherContract $events)
+	static function boot()
 	{
-		parent::boot($events);
+		parent::boot();
 	}
 
 	// ------------------------ RELATIONSHIP ------------------------
@@ -37,6 +37,18 @@ class Insurance extends BaseModel {
 	}
 
 	// ------------------------ SCOPE ------------------------
+	function scopeName($q, $value = null)
+	{
+		if (!$value)
+		{
+			return $q;
+		}
+		else
+		{
+			$value = str_replace("*", '%', $value);
+			return $q->where('name', 'like', $value);
+		}
+	}
 
 	// ------------------------ MUTATOR ------------------------
 
