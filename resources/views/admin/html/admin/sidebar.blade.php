@@ -5,15 +5,23 @@
 		</a>
 	</div>
 	<div class="expanded">
-		<a href="../../html/dashboards/dashboard.html">
-			<span class="text-lg text-bold text-primary ">{{$html_title}}</span>
-		</a>
+		@if (isset($title_href))
+			<a href="{{$title_href}}">
+				<span class="text-lg text-bold text-primary">{{$title or '[$title]'}}</span>
+			</a>
+		@else
+			{{ '<a href="[$title_href]">' }}
+				<span class="text-lg text-bold text-primary">{{$title or '[$title]'}}</span>
+			{{ '</a>'}}
+		@endif
 	</div>
 </div>
 <div class="menubar-scroll-panel">
 
 	<!-- BEGIN MAIN MENU -->
-	{!! $nav->render() !!}
+	<ul id="main-menu" class="gui-controls">
+		{!! $nav->render() !!}
+	</ul>
 	<!-- END MAIN MENU -->
 
 	<div class="menubar-foot-panel">

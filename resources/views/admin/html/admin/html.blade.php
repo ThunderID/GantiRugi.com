@@ -1,13 +1,13 @@
 <html lang="en">
 	<head>
-		<title>{{$html_title}}</title>
+		<title>{{$title}}</title>
 
 		<!-- BEGIN META -->
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="keywords" content="your,keywords">
-		<meta name="description" content="Short explanation about this website">
+		<meta name="keywords" content="{{$meta['keywords'] or ''}}">
+		<meta name="description" content="{{$meta['description'] or ""}}">
 
 		<!-- BEGIN STYLESHEETS -->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,600,700,800' rel='stylesheet' type='text/css'/>
@@ -22,34 +22,44 @@
 		<script type="text/javascript" src="js/respond.min.js"></script>
 		<![endif]-->
 	</head>
-	<body class="header-fixed ">
+	<body class="header-fixed">
+
 		<header id="header">
-			@include('admin.widgets.headerbar')
+			{!! $topbar or '[$topbar]' !!}
 		</header>
+
 		<div id="base" class="menubar-hoverable">
+
 			<div class="offcanvas">
 			</div>
+
 			<div id="content">
 				<section>
-					<div class="section-header">
-						<ol class="breadcrumb">
-							@yield('breadcrumb')
-						</ol>
-					</div><!--end .section-header -->
-					<div class="section-body contain-lg">
+					@if (!isset($section_title))
+						<h1>[$section_title]</h1>
+					@elseif ($section_title)
+						<div class="section-header">
+							<h1 class=''>
+								{{$section_title or '[$section_title]'}} 
+								<small>{{$section_subtitle or '[$section_subtitle]'}}</small> 
+							</h1>
+						</div><!--end .section-header -->
+					@endif
+
+					<div class="section-body contain-xl">
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<h1 class='text-primary'>{{$page_title}} <small>{{Input::get('page') > 1 ? ' / Page ' . Input::get('page') : ""}}</small> </h1>
-								@include('admin.widgets.alerts')
-								@yield('content')
+								{!! $section_body or '[$section_body]' !!}
 							</div>
 						</div>
 					</div><!--end .section-body -->
 				</section>
 			</div>
-			<div id="menubar">
-				@include('admin.widgets.menubar')
+
+			<div id="menubar" class='menubar-inverse'>
+				{!! $sidebar or '[$sidebar]' !!}
 			</div>
+
 			<div class="offcanvas">
 			</div>
 		</div>

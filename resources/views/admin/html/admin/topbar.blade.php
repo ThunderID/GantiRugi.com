@@ -4,9 +4,15 @@
 		<ul class="header-nav header-nav-options">
 			<li class="header-nav-brand">
 				<div class="brand-holder">
-					<a href="../../html/dashboards/dashboard.html">
-						<span class="text-lg text-bold text-primary">{{$html_title}}</span>
-					</a>
+					@if (isset($title_href))
+						<a href="{{$title_href}}">
+							<span class="text-lg text-bold text-primary">{{$title or '[$title]'}}</span>
+						</a>
+					@else
+						{{ '<a href="[$title_href]">' }}
+							<span class="text-lg text-bold text-primary">{{$title or '[$title]'}}</span>
+						{{ '</a>'}}
+					@endif
 				</div>
 			</li>
 			<li>

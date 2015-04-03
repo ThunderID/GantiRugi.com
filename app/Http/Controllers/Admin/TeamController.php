@@ -1,10 +1,10 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Admin;
 
 use \App\User, \App\Commands\UploadFile;
 use Input, Session;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class AdminTeamController extends AdminController {
+class TeamController extends BaseController {
 
 	protected $controller_name = 'team';
 
