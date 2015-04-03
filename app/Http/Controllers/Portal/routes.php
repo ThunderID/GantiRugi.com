@@ -3,5 +3,5 @@
 // ------------------------------------------------------------------------
 // ROUTES FOR PORTAL
 // ------------------------------------------------------------------------
-Route::group(['prefix' => 'api', 'namespace' => 'App\Http\Controllers\API'], function() {
+Route::group(['prefix' => 'portal', 'before' => 'csrf'], function() {
 });
