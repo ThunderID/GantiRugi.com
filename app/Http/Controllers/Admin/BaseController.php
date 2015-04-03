@@ -6,50 +6,45 @@ use \ThunderID\Menu\MaterialAdminSideMenu;
 
 abstract class BaseController extends Controller {
 
-	protected $layout;
+	protected $html;
+	protected $per_page = 12;
 
 	function __construct() 
 	{
 		if (Auth::user() && Auth::user()->id)
 		{
-			$this->layout = view('admin.template');
-			$this->layout->html_title = 'TOUR.id';
-			
-			// leftmenu
+			$this->html = view('admin.html.admin.html');
+
+		// sidebar
 			$nav = new MaterialAdminSideMenu();
 
 			$nav->add('dashboard', 'Dashboard', 'javascript:;', 'md md-home');
-			$nav->add('overview', 'Overview', route('admin.dashboard.overview'), null, 'dashboard');
+			$nav->add('dashboard-overview', 'Overview', route('admin.dashboard.overview'), null, 'dashboard');
 
-			$nav->add('location', 'Locations', 'javascript:;', 'md md-place');
-			$nav->add('country', 'Country', route('admin.country.index'), '', 'location');
-			$nav->add('province', 'Province', route('admin.province.index'), '', 'location');
-			$nav->add('city', 'City', route('admin.city.index'), '', 'location');
-			$nav->add('destination', 'Destination', route('admin.destination.index'), null, 'location');
+			$nav->add('Business', 'Business', 'javascript:;', 'md md-business');
+			$nav->add('vendor', 'Vendor', route('admin.vendor.index'), null, 'Business');
 
+			$nav->add('clients', 'Clients', 'javascript:;', 'md md-people');
+			$nav->add('Customers', 'Customers', 'javascript:;', null, 'clients');
+			$nav->add('Claims', 'Claims', 'javascript:;', null, 'clients');
 
-			$nav->add('tours', 'Tour', 'javascript:;', 'md md-flight');
-			$nav->add('vendor', 'Vendor', route('admin.vendor.index'), null, 'tours');
-			$nav->add('tour', 'Tour', route('admin.tour.index'), null, 'tours');
+			$nav->add('Settings', 'Settings', 'javascript:;', 'md md-settings');
+			$nav->add('Users', 'Users', 'javascript:;', null, 'Settings');
+			$nav->add('Authentication', 'Authentication', 'javascript:;', null, 'Settings');
 
-			$nav->add('ecommerce', 'Ecommerce', 'javascript:;', 'md md-credit-card');
-			$nav->add('order', 'Order', route('admin.order.index'), null, 'ecommerce');
-			$nav->add('customer', 'Customers', route('admin.customer.index'), null, 'ecommerce');
+			// topbar
+			$this->html->topbar = view('admin.html.admin.topbar');
+			$this->html->topbar->title = 'CONTROL PANEL';
+			$this->html->topbar->title_href = route('admin.dashboard.overview');
 
-			$nav->add('backend', 'Backend', 'javascript:;', 'md md-people');
-			$nav->add('team', 'Team', route('admin.team.index'), null, 'backend');
-			// $nav->add('team', 'Role', route('admin.team_role.index'), null, 'backend');
-			$nav->add('log', 'Log', 'javascript:;', null, 'backend');
-
-
-			$this->layout->nav = $nav;
+			// sidebar
+			$this->html->sidebar = view('admin.html.admin.sidebar')->with('nav', $nav);
 		}
 		else
 		{
-			$this->layout = view('admin.template_login');
-			$this->layout->html_title = 'Tour.id';
+			$this->html = view('admin.html.blank.html');
 		}
 
-		// html 
+		$this->html->title = 'GANTIRUGI.com';
 	}
 }
